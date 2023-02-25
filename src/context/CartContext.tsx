@@ -1,6 +1,7 @@
 import { useToast } from "@chakra-ui/react";
 import { CartItem } from "@customTypes/cart.type";
 import { Product } from "@customTypes/product.type";
+import { deepClone } from "@utils/helper";
 import { createContext, useContext, useEffect, useState } from "react";
 
 type CartContextType = {
@@ -36,7 +37,7 @@ const CartProvider = ({ children }: { children: React.ReactNode }) => {
     }
 
     setCartItems(copiedCartItems);
-    
+
     localStorage.setItem("cart", JSON.stringify(copiedCartItems));
 
     toast({
@@ -87,10 +88,6 @@ const CartProvider = ({ children }: { children: React.ReactNode }) => {
       status: "success",
       description: "Item was successfully removed from cart",
     });
-  };
-
-  const deepClone = <T extends unknown>(data: T): T => {
-    return JSON.parse(JSON.stringify(data));
   };
 
   const getCartItemsFromLocalStorage = (): CartItem[] => {

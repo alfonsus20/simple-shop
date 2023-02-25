@@ -19,7 +19,7 @@ const Layout: React.FC<LayoutProps> = ({ title, children }) => {
       </Head>
       <Flex flexDir="column" minH="100vh">
         <Header />
-        <Box flex={1} pt={6} pb={12} maxW="container.xl" mx="auto" w="full">
+        <Box px={4} flex={1} pt={6} pb={12} maxW="container.xl" mx="auto" w="full">
           {children}
         </Box>
         <Footer />

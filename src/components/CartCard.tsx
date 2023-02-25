@@ -14,7 +14,7 @@ const CartCard = ({ product, count }: CartItem) => {
         <Image src={product.image} w={32} h={32} alt={product.title} />
         <Flex flexDir="column" flex={1} justifyContent="space-between">
           <Box>
-            <Text noOfLines={2} fontSize="xl">
+            <Text noOfLines={{ base: 1, lg: 2 }} fontSize="xl">
               {product.title}
             </Text>
             <Text fontWeight="semibold" fontSize="lg">
@@ -33,9 +33,10 @@ const CartCard = ({ product, count }: CartItem) => {
                 icon={<FaMinus />}
                 variant="outline"
                 aria-label="decrease"
+                isDisabled={count < 2}
                 onClick={() => decreaseCartItemQuantity(product.id)}
               />
-              <Input maxW={16} textAlign="center" value={count} />
+              <Input maxW={16} value={count} textAlign="center" />
               <IconButton
                 icon={<FaPlus />}
                 variant="outline"

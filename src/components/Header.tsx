@@ -1,27 +1,17 @@
-import {
-  Box,
-  Circle,
-  Flex,
-  Icon,
-  IconButton,
-  Input,
-  InputGroup,
-  InputRightElement,
-} from "@chakra-ui/react";
+import { Box, Circle, Flex, IconButton } from "@chakra-ui/react";
 import Link from "next/link";
 
-import { AiOutlineShoppingCart, AiOutlineSearch } from "react-icons/ai";
+import { AiOutlineShoppingCart } from "react-icons/ai";
 import { useCartContext } from "src/context/CartContext";
 
 const Header = () => {
   const { cartItems } = useCartContext();
 
   return (
-    <Box bg="gray.700">
+    <Box bg="gray.700" position="sticky" top={0} zIndex={10}>
       <Flex
-        position="sticky"
         px={10}
-        py={6}
+        py={{ base: 4, md: 6 }}
         alignItems="center"
         color="white"
         maxW="container.xl"
@@ -32,13 +22,6 @@ const Header = () => {
         <Box as={Link} href="/">
           SIMPLE SHOP
         </Box>
-
-        <InputGroup w="60%">
-          <Input placeholder="Cari barang di Simple Shop" />
-          <InputRightElement>
-            <Icon as={AiOutlineSearch} fontSize="2xl" />
-          </InputRightElement>
-        </InputGroup>
 
         <Link href="/cart">
           <Box pos="relative">
