@@ -1,10 +1,20 @@
-import { Box, Button, Flex, Icon, Image, Text } from "@chakra-ui/react";
+import {
+  Box,
+  Button,
+  Flex,
+  Icon,
+  IconButton,
+  Image,
+  Input,
+  Text,
+} from "@chakra-ui/react";
 import Layout from "@components/Layout";
 import { getProductDetail } from "@services/product.service";
 import { useQuery } from "@tanstack/react-query";
 import { useRouter } from "next/router";
-import { FaStar, FaCartPlus } from "react-icons/fa";
-import useManageCart from "src/hooks/useManageCart";
+import { useState } from "react";
+import { FaStar, FaCartPlus, FaPlus, FaMinus } from "react-icons/fa";
+import { useCartContext } from "src/context/CartContext";
 
 const ProductDetail = () => {
   const router = useRouter();
@@ -17,18 +27,20 @@ const ProductDetail = () => {
 
   const product = data?.data;
 
-  const { addToCart } = useManageCart();
+  const { addToCart } = useCartContext();
+
+  const [quantity, setQuantity] = useState(1);
 
   return (
     <Layout title="Product Detail">
-      <Flex>
+      <Flex gap={8}>
         <Box w="40%">
           <Image
             src={product?.image}
             alt={product?.title}
             w="full"
             style={{ aspectRatio: 4 / 3 }}
-            objectPosition="center"
+            objectPosition="top"
             objectFit="contain"
           />
         </Box>
@@ -45,17 +57,43 @@ const ProductDetail = () => {
           <Text fontWeight="semibold" fontSize="3xl" mb={4}>
             ${product?.price}
           </Text>
-          <Text mb={6}>{product?.description}</Text>
+          <Flex mb={6} alignItems="center" gap={6}>
+            <Text>Quantity</Text>
+            <Flex gap={2}>
+              <IconButton
+                icon={<FaMinus />}
+                variant="outline"
+                aria-label="decrease"
+                onClick={() => {
+                  if (quantity > 1) {
+                    setQuantity((prev) => prev - 1);
+                  }
+                }}
+              />
+              <Input maxW={16} textAlign="center" value={quantity} />
+              <IconButton
+                icon={<FaPlus />}
+                variant="outline"
+                aria-label="increase"
+                onClick={() => setQuantity((prev) => prev + 1)}
+              />
+            </Flex>
+          </Flex>
           <Button
             size="lg"
             leftIcon={<Icon as={FaCartPlus} />}
             colorScheme="blue"
-            onClick={() => addToCart(product!)}
+            onClick={() => addToCart(product!, quantity)}
+            variant='outline'
           >
             Add To Cart
           </Button>
         </Box>
       </Flex>
+      <Box>
+        <Text fontWeight='medium' fontSize='2xl' mb={2}>Product Description</Text>
+        <Text>{product?.description}</Text>
+      </Box>
     </Layout>
   );
 };
