@@ -86,7 +86,7 @@ const ProductDetail = () => {
                 </Flex>
               </Flex>
               <Button
-                size="lg"
+                size={{ base: "md", md: "lg" }}
                 leftIcon={<Icon as={FaCartPlus} />}
                 colorScheme="blue"
                 onClick={() => addToCart(product!, quantity)}

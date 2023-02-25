@@ -30,7 +30,9 @@ const Header = () => {
           <Box position="relative" w={20} style={{ aspectRatio: 4 / 3 }}>
             <Image src={Logo} alt="logo" objectFit="contain" layout="fill" />
           </Box>
-          <Text fontWeight="semibold">Simple Shop</Text>
+          <Text fontWeight="semibold" display={{ base: "none", md: "block" }}>
+            Simple Shop
+          </Text>
         </Flex>
         <Link href="/cart">
           <Box pos="relative">

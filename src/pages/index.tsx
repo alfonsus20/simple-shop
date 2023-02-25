@@ -16,7 +16,7 @@ const Home = () => {
   });
 
   return (
-    <Layout title="Simple Shop - Products">
+    <Layout title="Simple Shop">
       <Grid
         templateColumns={{
           base: "repeat(2,1fr)",
