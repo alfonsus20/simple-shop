@@ -86,6 +86,7 @@ const CartProvider = ({ children }: { children: React.ReactNode }) => {
 
     toast({
       status: "success",
+      title: "Success",
       description: "Item was successfully removed from cart",
     });
   };

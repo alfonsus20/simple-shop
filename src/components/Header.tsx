@@ -27,7 +27,11 @@ const Header = () => {
           as={Link}
           href="/"
         >
-          <Box position="relative" w={20} style={{ aspectRatio: 4 / 3 }}>
+          <Box
+            position="relative"
+            w={{ base: 16, md: 20 }}
+            style={{ aspectRatio: 4 / 3 }}
+          >
             <Image src={Logo} alt="logo" objectFit="contain" layout="fill" />
           </Box>
           <Text fontWeight="semibold" display={{ base: "none", md: "block" }}>
