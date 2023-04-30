@@ -1,6 +1,6 @@
 # Simple E-Commerce Website
 
-A simple e-commerce website which has several features:
+A simple e-commerce website for Erajaya technical test. This website has several features:
 
 - Product List
 - Product Detail
